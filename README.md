@@ -1,7 +1,7 @@
 # environment_configuration
 My preferred shell configuration
 
-I've put this here so I can copy it down when I change computers.  I'll try and keep it up to date as I change things that I like.  If you're not me, feel free to fork, but it's really unlikely I'll pay much attention to any PRs.  It's not for you, after all.
+I've put this here so I can copy it down when I change computers.  I'll try and keep it up to date as I change things that I like.  Feel free to make a PR if you think you've got a good idea.
 
 You'll need to remember to remap Capslock to Control.
 
