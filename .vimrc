@@ -23,6 +23,8 @@ map <Tab><Tab> <C-w>w
 set nocompatible
 " Folds on indents for Python files
 au BufNewFile,BufRead *.py set foldmethod=indent
+" Use old regexp engine for typescript files
+au BufNewFile,BufRead *.tsx set re=0
 
 call plug#begin()
 " The default plugin directory will be as follows:
