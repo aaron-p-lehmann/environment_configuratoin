@@ -4,7 +4,6 @@ cmap w!! w !sudo tee % >/dev/null
 set showmode "Display the current mode
 set history=100 "Default was 20
 set ruler "Show the cursor location
-set listchars=tab:▸\ ,trail:·,eol:$
 set number                     "show line numbers
 set showmatch                  "show matching brackets/prarens
 set hlsearch                   "highlight searches
@@ -23,57 +22,26 @@ map <Tab><Tab> <C-w>w
 set nocompatible
 " Folds on indents for Python files
 au BufNewFile,BufRead *.py set foldmethod=indent
+au BufRead,BufNewFile *.py set expandtab
 " Use old regexp engine for typescript files
 au BufNewFile,BufRead *.tsx set re=0
 
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Color scheme
-Plug 'joshdick/onedark.vim'
-
-" Syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
-" PEP08 compliance
-Plug 'Vimjas/vim-python-pep8-indent'
-
-" Linting
-Plug 'dense-analysis/ale'
-
-" Initialize plugin system
-call plug#end()
-
-" Python linters are pylint and flake8
-let g:ale_linters = {
-      \   'python': ['flake8', 'pylint'],
-      \}
-nmap <F10> :ALEFix<CR>
-let g:ale_fix_on_save = 1
-
-" Show linter errors and warnings
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-
-  return l:counts.total == 0 ? '✨ all good ✨' : printf(
-        \   '😞 %dW %dE',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
-
-set statusline=
-set statusline+=%m
-set statusline+=\ %f
-set statusline+=%=
-set statusline+=\ %{LinterStatus()}
 " END vim-for-python
+"
+colorscheme industry
+set listchars=precedes:^,tab:<->,trail:.,eol:$
+" configure expanding of tabs for various file types
+
+" --------------------------------------------------------------------------------
+" configure editor with tabs and nice stuff...
+"
+" --------------------------------------------------------------------------------
+set expandtab          " enter spaces when tab is pressed
+set textwidth=120      " break lines when line length increases
+set tabstop=4          " use 4 spaces to represent tab
+set softtabstop=4
+set shiftwidth=4       " number of spaces to use for auto indent
+set autoindent         " copy indent from current line when starting a new line
+
+" make backspaces more powerfull
+set backspace=indent,eol,start
